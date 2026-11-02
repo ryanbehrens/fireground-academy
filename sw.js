@@ -1,6 +1,6 @@
-// Fireground Academy service worker — makes the app work offline.
+// Firefighter Training service worker — makes the app work offline.
 // Bump VERSION whenever you change index.html so phones pick up the update.
-const VERSION = 'fga-v1';
+const VERSION = 'fga-v2';
 const CORE = [
   './',
   './index.html',

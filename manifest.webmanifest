@@ -1,6 +1,6 @@
 {
-  "name": "Fireground Academy — FF1 & FF2 Trainer",
-  "short_name": "Fireground",
+  "name": "Firefighter Training — FF1 & FF2",
+  "short_name": "FF Training",
   "description": "Firefighter I & II training: drills, flashcards, picture ID, scenarios and timed mock exams.",
   "start_url": "./index.html",
   "scope": "./",

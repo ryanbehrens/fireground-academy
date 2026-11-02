@@ -1,4 +1,4 @@
-# Fireground Academy — FF1 & FF2 Trainer (installable web app)
+# Firefighter Training — FF1 & FF2 (installable web app)
 
 This folder is a complete progressive web app (PWA). Host it on any static web host with HTTPS and people can install it to their phone's home screen with its own icon. Once installed it works offline.
 
