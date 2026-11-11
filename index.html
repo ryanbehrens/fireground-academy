@@ -207,6 +207,14 @@ header{padding-top:env(safe-area-inset-top);position:sticky;top:0;z-index:20;bac
   .logo{font-size:16px}
   .mode.exam .truck{width:170px;opacity:.5}
 }
+.guide h3{font-size:18px;margin:18px 0 8px;color:var(--fire2)}
+.guide ul{margin:0;padding-left:20px;line-height:1.55}
+.guide li{margin:5px 0;color:#eadbd2}
+.guide .intro{color:var(--mute);margin:0 0 6px;line-height:1.5}
+.guide .gart{float:right;width:150px;margin:0 0 10px 14px}
+.guide .gart .art{max-width:150px}
+.guide .gbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;clear:both}
+@media(max-width:560px){.guide .gart{float:none;width:auto;margin:0 auto 6px;display:grid;place-items:center}}
 </style>
 </head>
 <body>
@@ -227,6 +235,12 @@ header{padding-top:env(safe-area-inset-top);position:sticky;top:0;z-index:20;bac
 </header>
 <div class="wrap" id="app"></div>
 
+<script src="content/q-ff1-a.js"></script>
+<script src="content/q-ff1-b.js"></script>
+<script src="content/q-ff1-c.js"></script>
+<script src="content/q-ff2.js"></script>
+<script src="content/art-extra.js"></script>
+<script src="content/study-guide.js"></script>
 <script>
 /* =========================================================
    QUESTION BANK  — correct answer is ALWAYS listed first in
@@ -386,6 +400,10 @@ add(1,'Fire Protection Systems','A standard glass-bulb sprinkler with a RED bulb
 add(2,'Fire Investigation','A V-shaped burn pattern like this on a wall usually points to:',['The area of origin, near the bottom (point) of the V','The location where the fire went out','The path the firefighters took','The source of the water used'],'Fire burns up and out, leaving a V whose low point often indicates the area of origin. Preserve these patterns during overhaul.',{img:'vpattern'});
 
 /* topic → YouTube search for "watch it" links */
+/* ---------- Extra question bank (content/*.js) ---------- */
+(window.FGA_Q||[]).forEach(a=>add(...a));
+const GUIDE=window.FGA_GUIDE||{};
+
 const VID={
  'Fire Behavior':'fire behavior flashover training firefighter','Safety & SCBA':'firefighter SCBA donning training','Extinguishers':'fire extinguisher classes training',
  'Ropes & Knots':'firefighter knots training','Ladders':'firefighter ground ladder raise training','Hose & Streams':'firefighter hose lay nozzle training',
@@ -393,7 +411,10 @@ const VID={
  'Search & Rescue':'firefighter primary search technique','Building Construction':'building construction types firefighter','Hazmat':'hazmat awareness operations firefighter',
  'Communications & ICS':'incident command system firefighter basics','Fire Protection Systems':'sprinkler system firefighter operations','Salvage & Overhaul':'firefighter salvage overhaul',
  'Foam':'firefighting foam application training','Vehicle Extrication':'vehicle extrication stabilization training','Fire Investigation':'fire origin and cause burn patterns',
- 'Flammable Gas':'propane tank fire firefighter training','Prevention & Public Ed':'fire prevention smoke alarm education'
+ 'Flammable Gas':'propane tank fire firefighter training','Prevention & Public Ed':'fire prevention smoke alarm education',
+ 'Fire Service Orientation':'firefighter recruit academy safety basics','Fire Suppression':'interior fire attack hoseline training','First Aid':'first aid CPR training basics',
+ 'Incident Scene Ops':'fireground strategy and tactics training','Building Collapse':'building collapse warning signs firefighter','Technical Rescue':'technical rescue awareness firefighter',
+ 'Maintenance & Testing':'fire hose service testing'
 };
 
 /* =========================================================
@@ -456,6 +477,7 @@ function vpattern(){return `<svg class="art" viewBox="0 0 220 200"><rect x="0" y
 <g fill="#111" opacity=".6"><circle cx="80" cy="60" r="3"/><circle cx="140" cy="44" r="2"/></g></svg>`}
 const ART={tetra,curve,pot,radiation,ladder,sprinkler,vpattern,'hyd-blue':()=>hydrant('#7cc6f2'),'hyd-orange':()=>hydrant('#f97316'),'hyd-green':()=>hydrant('#16a34a'),
  'ext-a':()=>extShape('a'),'ext-c':()=>extShape('c'),'ext-d':()=>extShape('d'),'nfpa-q':()=>nfpa(3,2,1,'',true),'nfpa-w':()=>nfpa(3,1,2,'W',false)};
+Object.assign(ART,window.FGA_ART||{});
 const truckSVG=`<svg class="truck" viewBox="0 0 300 130">
 <path d="M14 44 H196 V104 H14 Q8 104 8 98 V50 Q8 44 14 44Z" fill="#e3262b"/>
 <path d="M196 30 H246 Q256 30 262 40 L284 72 Q288 78 288 86 V104 H196Z" fill="#e3262b"/>
@@ -526,7 +548,7 @@ function home(){
   <div class="grid">
    <button class="mode exam" onclick="go('examSetup')"><div class="lights"></div>${truckSVG}<span class="tag" style="background:rgba(255,255,255,.1);color:#fff">Timed</span><div class="ic">🚨</div><h3>Mock Exam</h3><p style="max-width:300px;color:#e7cfc4">Get dispatched, beat the burning fuse, and find out if you knocked the fire down. Pass mark: 70%.</p></button>
    <button class="mode" onclick="go('drill')"><span class="tag">Shuffled</span><div class="ic">🔥</div><h3>Random Drill</h3><p>Every question, every order, every time. Build a heat streak and add a shot clock if you want pressure.</p></button>
-   <button class="mode" onclick="go('study')"><span class="tag">5 modes</span><div class="ic">🧠</div><h3>Study Modes</h3><p>Flashcards, think-first recall, best-answer scenarios, picture ID and classic multiple choice — by topic.</p></button>
+   <button class="mode" onclick="go('study')"><span class="tag">6 modes</span><div class="ic">🧠</div><h3>Study Modes</h3><p>Study guide notes, flashcards, think-first recall, best-answer scenarios, picture ID and classic multiple choice — by topic.</p></button>
    <button class="mode" onclick="go('weakspots')"><div class="ic">🎯</div><h3>Weak Spots</h3><p>Questions you've missed come back here until you nail them.</p><div class="cnt">${wk} to review</div></button>
    <button class="mode" onclick="startMode('pics')"><div class="ic">🖼️</div><h3>Picture ID</h3><p>Hydrant colors, placards, symbols, burn patterns. For visual learners.</p><div class="cnt">${P.filter(q=>q.img).length} images</div></button>
   </div>
@@ -548,6 +570,7 @@ function study(){
    ${card('mc','✅','Multiple Choice','Classic exam format with instant feedback and an explanation for every answer.',sub.length)}
    ${card('best','⚖️','Best Answer','Fireground scenarios where several answers sound right. Pick the BEST one.',sub.filter(q=>q.best).length)}
    ${card('pics','🖼️','Picture ID','Identify hydrants, symbols, diagrams and burn patterns from the image.',sub.filter(q=>q.img).length)}
+   <button class="mode" onclick="startMode('guide')"><div class="ic">📖</div><h3>Study Guide</h3><p>Key facts for each topic, in plain language. Read it, then drill it.</p><div class="cnt">${prefs.topic==='All'?Object.keys(GUIDE).length+' topics':(GUIDE[prefs.topic]?'1 topic':'—')}</div></button>
   </div></div>`;
 }
 function startMode(m){
@@ -557,7 +580,19 @@ function startMode(m){
   if(m==='think')return runPractice({title:'Think First'+tl,items:sub,think:true,back:'study'});
   if(m==='mc')return runPractice({title:'Multiple Choice'+tl,items:sub,back:'study'});
   if(m==='best')return runPractice({title:'Best Answer'+tl,items:sub.filter(q=>q.best),banner:'⚖️ More than one answer may be partly right. Choose the BEST action.',back:'study',empty:'No scenario questions in this topic — try "All".'});
+  if(m==='guide')return guideView();
   if(m==='pics')return runPractice({title:'Picture ID'+tl,items:sub.filter(q=>q.img),back:current.from||'study',empty:'No picture questions in this topic yet — try "All".'});
+}
+
+function guideView(){
+  const names=Object.keys(GUIDE),t=GUIDE[prefs.topic]?prefs.topic:null;
+  const chips=`<div class="chips">${['All',...names].map(n=>`<button class="chip ${(t||'All')===n?'on':''}" onclick="prefs.topic='${esc(n)}';savePrefs();startMode('guide')">${esc(n)}</button>`).join('')}</div>`;
+  if(!t){app.innerHTML=`<div class="view">${backBtn('study')}<h2 style="font-size:30px;margin:4px 0 12px">Study Guide</h2>${chips}<p class="mute" style="margin:0 0 12px">Pick a topic to read the key facts, then test yourself on it.</p><div class="topics">${names.filter(n=>prefs.lvl==='all'||String(GUIDE[n].lv)===prefs.lvl).map(n=>{const c=Q.filter(q=>q.t===n&&lvlOK(q)).length;return `<button class="tp" onclick="prefs.topic='${esc(n)}';savePrefs();startMode('guide')"><div class="n">${esc(n)}<i>FF${GUIDE[n].lv} · ${c} Qs</i></div></button>`}).join('')}</div></div>`;return}
+  const g=GUIDE[t],n=pool(q=>q.t===t).length;
+  app.innerHTML=`<div class="view">${backBtn('study')}<h2 style="font-size:30px;margin:4px 0 12px">Study Guide</h2>${chips}
+  <div class="card guide"><div class="qmeta"><span class="lv">FF${g.lv}</span><span>${esc(t)}</span></div>${g.img&&ART[g.img]?`<div class="gart">${ART[g.img]()}</div>`:''}<h2 style="font-size:26px;margin:6px 0">${esc(t)}</h2><p class="intro">${esc(g.intro)}</p>
+  ${g.sections.map(([h,pts])=>`<h3>${esc(h)}</h3><ul>${pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`).join('')}
+  <div class="gbtns"><button class="btn primary" onclick="startMode('flash')">🃏 Flashcards (${n})</button><button class="btn" onclick="startMode('mc')">✅ Quiz me</button><a class="watch" href="${ytLink({t})}" target="_blank" rel="noopener" style="align-self:center">▶ Watch videos</a></div></div></div>`;
 }
 
 /* =========================================================

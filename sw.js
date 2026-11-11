@@ -1,10 +1,16 @@
 // Firefighter Training service worker — makes the app work offline.
 // Bump VERSION whenever you change index.html so phones pick up the update.
-const VERSION = 'fga-v2';
+const VERSION = 'fga-v3';
 const CORE = [
   './',
   './index.html',
   './manifest.webmanifest',
+  './content/q-ff1-a.js',
+  './content/q-ff1-b.js',
+  './content/q-ff1-c.js',
+  './content/q-ff2.js',
+  './content/art-extra.js',
+  './content/study-guide.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/maskable-512.png',

@@ -3,7 +3,8 @@
 This folder is a complete progressive web app (PWA). Host it on any static web host with HTTPS and people can install it to their phone's home screen with its own icon. Once installed it works offline.
 
 ## Files
-- `index.html` — the whole app (question bank, artwork, all modes)
+- `index.html` — the app itself (original question bank, artwork, all modes)
+- `content/` — extra question banks (`q-ff1-a.js`, `q-ff1-b.js`, `q-ff1-c.js`, `q-ff2.js`), extra diagrams and picture questions (`art-extra.js`), and Study Guide notes (`study-guide.js`)
 - `manifest.webmanifest` — app name, colors, icons (what makes it installable)
 - `sw.js` — service worker (offline support + caching)
 - `icons/` — home-screen icons (Android, iPhone, maskable)
@@ -28,11 +29,11 @@ This folder is a complete progressive web app (PWA). Host it on any static web h
 
 ## Updating the app
 1. Edit `index.html`.
-2. In `sw.js`, bump `VERSION` (e.g. `fga-v1` → `fga-v2`) so installed phones fetch the new version.
+2. In `sw.js`, bump `VERSION` (and add any new files to `CORE`) (e.g. `fga-v1` → `fga-v2`) so installed phones fetch the new version.
 3. Re-upload.
 
 ## Adding questions
-In `index.html`, find the QUESTION BANK section and add a line:
+Add a line to one of the `content/q-*.js` files (or the QUESTION BANK section of `index.html`). In the content files the function is `q(...)` instead of `add(...)` — same arguments:
 
 ```js
 add(1,'Ladders','Your question?',['Correct answer FIRST','Wrong','Wrong','Wrong'],'Explanation shown after answering.',{best:1});
